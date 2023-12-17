@@ -1,0 +1,13 @@
+<!-- File: empty_world.launch -->
+<launch>
+  <!-- Launch Gazebo with an empty world -->
+  <param name="use_sim_time" value="true"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot_manipulator)/urdf/mrm.xacro'"/>
+  
+  <arg name="world_name" default="$(find gazebo_ros)/worlds/empty.world"/>
+  <param name="world_name" value="$(arg world_name)"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
+  </include>
+</launch>

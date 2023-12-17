@@ -1,0 +1,14 @@
+
+<!-- File: my_robot_gazebo.launch -->
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot_manipulator)/urdf/mrm.xacro'" />
+
+  <!-- Start Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find my_robot_manipulator)/worlds/empty.world" />
+  </include>
+
+  <!-- Spawn robot model in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -param robot_description -model my_robot" />
+</launch>
